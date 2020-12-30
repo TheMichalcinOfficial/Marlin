@@ -621,14 +621,14 @@
 //#define USE_ZMAX_PLUG
 
 // Enable pullup for all endstops to prevent a floating state
-#define ENDSTOPPULLUPS
+//#define ENDSTOPPULLUPS
 #if DISABLED(ENDSTOPPULLUPS)
   // Disable ENDSTOPPULLUPS to set pullups individually
   //#define ENDSTOPPULLUP_XMAX
   //#define ENDSTOPPULLUP_YMAX
   //#define ENDSTOPPULLUP_ZMAX
-  //#define ENDSTOPPULLUP_XMIN
-  //#define ENDSTOPPULLUP_YMIN
+  #define ENDSTOPPULLUP_XMIN
+  #define ENDSTOPPULLUP_YMIN
   //#define ENDSTOPPULLUP_ZMIN
   //#define ENDSTOPPULLUP_ZMIN_PROBE
 #endif
@@ -1140,7 +1140,7 @@
 
 //#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.
 //#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.
-//#define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
+#define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
 
 //#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
