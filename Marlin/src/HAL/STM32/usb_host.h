@@ -21,6 +21,7 @@
  */
 #pragma once
 
+<<<<<<< HEAD:Marlin/src/module/thermistor/thermistor_503.h
 // Zonestar (Z8XM2) Heated Bed thermistor. Added By AvanOsch
 // These are taken from the Zonestar settings in original Repetier firmware: Z8XM2_ZRIB_LCD12864_V51.zip
 const temp_entry_t temptable_503[] PROGMEM = {
@@ -55,6 +56,7 @@ const temp_entry_t temptable_503[] PROGMEM = {
    { OV(1021), -27 },
    { OV(1023), -200}
 };
+=======
 #include <stdint.h>
 
 typedef enum {
@@ -92,3 +94,4 @@ public:
 
 extern USBHost usb;
 extern BulkStorage bulk;
+>>>>>>> 4ad633bae235f0a47972d6d7873e614b8286d914:Marlin/src/HAL/STM32/usb_host.h

@@ -833,6 +833,11 @@
 #else
   // Clear probe pin settings when no probe is selected
   #undef Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+  #undef USE_PROBE_FOR_Z_HOMING
+#endif
+
+#if Z_HOME_DIR > 0
+  #define HOME_Z_FIRST // If homing away from BED do Z first
 #endif
 
 #if Z_HOME_DIR > 0
@@ -1168,6 +1173,12 @@
   #elif ENABLED(TFT_INTERFACE_FSMC)
     #define TFT_480x320
   #endif
+#elif ENABLED(TFT_COLOR_UI) && TFT_HEIGHT == 272
+  #if ENABLED(TFT_INTERFACE_SPI)
+    #define TFT_480x272_SPI
+  #elif ENABLED(TFT_INTERFACE_FSMC)
+    #define TFT_480x272
+  #endif
 #endif
 
 // Fewer lines with touch buttons on-screen
@@ -1177,6 +1188,9 @@
 #elif EITHER(TFT_480x320, TFT_480x320_SPI)
   #define HAS_UI_480x320 1
   #define LCD_HEIGHT TERN(TOUCH_SCREEN, 6, 7)
+#elif EITHER(TFT_480x272, TFT_480x272_SPI)
+  #define HAS_UI_480x272 1
+  #define LCD_HEIGHT TERN(TOUCH_SCREEN, 6, 7)
 #endif
 
 // This emulated DOGM has 'touch/xpt2046', not 'tft/xpt2046'
@@ -1184,6 +1198,17 @@
   #undef TOUCH_SCREEN
   #if ENABLED(TFT_CLASSIC_UI)
     #define HAS_TOUCH_BUTTONS 1
+  #endif
+#endif
+
+// XPT2046_** Compatibility
+#if !(defined(TOUCH_CALIBRATION_X) || defined(TOUCH_CALIBRATION_Y) || defined(TOUCH_OFFSET_X) || defined(TOUCH_OFFSET_Y) || defined(TOUCH_ORIENTATION))
+  #if defined(XPT2046_X_CALIBRATION) && defined(XPT2046_Y_CALIBRATION) && defined(XPT2046_X_OFFSET) && defined(XPT2046_Y_OFFSET)
+    #define TOUCH_CALIBRATION_X  XPT2046_X_CALIBRATION
+    #define TOUCH_CALIBRATION_Y  XPT2046_Y_CALIBRATION
+    #define TOUCH_OFFSET_X       XPT2046_X_OFFSET
+    #define TOUCH_OFFSET_Y       XPT2046_Y_OFFSET
+    #define TOUCH_ORIENTATION    TOUCH_LANDSCAPE
   #endif
 #endif
 
