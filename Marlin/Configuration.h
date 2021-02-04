@@ -70,7 +70,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Michalcin, default config)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -128,7 +128,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_RAMPS_S_12_EEFB
+  #define MOTHERBOARD BOARD_RAMPS_14_EFB
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
@@ -136,7 +136,7 @@
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
-#define MACHINE_UUID "df9ff7f1-d453-4621-aa8e-8a51d14b7250"
+//#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
 
 // @section extruder
 
@@ -408,7 +408,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 5
+#define TEMP_SENSOR_0 1
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -416,12 +416,12 @@
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
-#define TEMP_SENSOR_BED 5
+#define TEMP_SENSOR_BED 0
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
-#define DUMMY_THERMISTOR_998_VALUE 25
+#define DUMMY_THERMISTOR_998_VALUE  25
 #define DUMMY_THERMISTOR_999_VALUE 100
 
 // Resistor values when using MAX31865 sensors (-5) on TEMP_SENSOR_0 / 1
@@ -480,8 +480,8 @@
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
 #if ENABLED(PIDTEMP)
-  #define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
-  #define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
+  //#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
+  //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
   //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
 
@@ -515,7 +515,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-#define PIDTEMPBED
+//#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -621,7 +621,7 @@
 //#define USE_ZMAX_PLUG
 
 // Enable pullup for all endstops to prevent a floating state
-//#define ENDSTOPPULLUPS
+#define ENDSTOPPULLUPS
 #if DISABLED(ENDSTOPPULLUPS)
   // Disable ENDSTOPPULLUPS to set pullups individually
   //#define ENDSTOPPULLUP_XMAX
@@ -653,7 +653,7 @@
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING true // Set to true to invert the logic of the probe.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false // Set to true to invert the logic of the probe.
 
 /**
  * Stepper Drivers
@@ -820,7 +820,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-#define S_CURVE_ACCELERATION
+//#define S_CURVE_ACCELERATION
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1054,9 +1054,9 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE   5 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_DEPLOY_PROBE    5 // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE     1 // Z Clearance between multiple probes
+#define Z_CLEARANCE_MULTI_PROBE     2 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
 
 #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
@@ -1089,7 +1089,7 @@
 //#define PROBING_STEPPERS_OFF      // Turn steppers off (unless needed to hold position) when probing
 //#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
-// Require minimum nozzle and/or bed temperature for probing.
+// Require minimum nozzle and/or bed temperature for probing
 //#define PREHEAT_BEFORE_PROBING
 #if ENABLED(PREHEAT_BEFORE_PROBING)
   #define PROBING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
@@ -1140,7 +1140,7 @@
 
 //#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.
 //#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.
-#define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
+//#define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
 
 //#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
@@ -1193,7 +1193,7 @@
 #endif
 
 #if EITHER(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)
-  #define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
+  //#define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
 #endif
 
 /**
@@ -1308,7 +1308,7 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-#define AUTO_BED_LEVELING_BILINEAR
+//#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
@@ -1318,7 +1318,7 @@
  * leveling immediately after G28.
  */
 //#define RESTORE_LEVELING_AFTER_G28
-#define ENABLE_LEVELING_AFTER_G28
+//#define ENABLE_LEVELING_AFTER_G28
 
 /**
  * Auto-leveling needs preheating
@@ -1385,7 +1385,7 @@
     // Experimental Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
     //
-    #define ABL_BILINEAR_SUBDIVISION
+    //#define ABL_BILINEAR_SUBDIVISION
     #if ENABLED(ABL_BILINEAR_SUBDIVISION)
       // Number of subdivisions between probe points
       #define BILINEAR_SUBDIVISIONS 3
@@ -1429,7 +1429,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-#define LCD_BED_LEVELING
+//#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -1451,6 +1451,25 @@
     #define LEVEL_CORNERS_VERIFY_RAISED   // After adjustment triggers the probe, re-probe to verify
     //#define LEVEL_CORNERS_AUDIO_FEEDBACK
   #endif
+
+  /**
+   * Corner Leveling Order
+   *
+   * Set 2 or 4 points. When 2 points are given, the 3rd is the center of the opposite edge.
+   *
+   *  LF  Left-Front    RF  Right-Front
+   *  LB  Left-Back     RB  Right-Back
+   *
+   * Examples:
+   *
+   *      Default        {LF,RB,LB,RF}         {LF,RF}           {LB,LF}
+   *  LB --------- RB   LB --------- RB    LB --------- RB   LB --------- RB
+   *  |  4       3  |   | 3         2 |    |     <3>     |   | 1           |
+   *  |             |   |             |    |             |   |          <3>|
+   *  |  1       2  |   | 1         4 |    | 1         2 |   | 2           |
+   *  LF --------- RF   LF --------- RF    LF --------- RF   LF --------- RF
+   */
+  #define LEVEL_CORNERS_LEVELING_ORDER { LF, RF, RB, LB }
 #endif
 
 /**
@@ -1479,7 +1498,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing.
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-#define Z_SAFE_HOMING
+//#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing
@@ -1564,7 +1583,7 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+//#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
@@ -1594,9 +1613,11 @@
 
 // @section temperature
 
-// Preheat Constants
+//
+// Preheat Constants - Up to 5 are supported without changes
+//
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 190
+#define PREHEAT_1_TEMP_HOTEND 180
 #define PREHEAT_1_TEMP_BED     70
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
@@ -1733,7 +1754,10 @@
  *
  * View the current statistics with M78.
  */
-#define PRINTCOUNTER
+//#define PRINTCOUNTER
+#if ENABLED(PRINTCOUNTER)
+  #define PRINTCOUNTER_SAVE_INTERVAL 60 // (minutes) EEPROM save interval during print
+#endif
 
 /**
  * Password
@@ -1778,9 +1802,9 @@
  * Select the language to display on the LCD. These languages are available:
  *
  *   en, an, bg, ca, cz, da, de, el, el_gr, es, eu, fi, fr, gl, hr, hu, it,
- *   jp_kana, ko_KR, nl, pl, pt, pt_br, ro, ru, sk, tr, uk, vi, zh_CN, zh_TW, test
+ *   jp_kana, ko_KR, nl, pl, pt, pt_br, ro, ru, sk, sv, tr, uk, vi, zh_CN, zh_TW
  *
- * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek', 'el_gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)', 'test':'TEST' }
+ * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek', 'el_gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'sv':'Swedish', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)' }
  */
 #define LCD_LANGUAGE en
 
@@ -1821,7 +1845,7 @@
  * SD Card support is disabled by default. If your controller has an SD slot,
  * you must uncomment the following option or it won't work.
  */
-#define SDSUPPORT
+//#define SDSUPPORT
 
 /**
  * SD CARD: ENABLE CRC
@@ -1876,7 +1900,7 @@
 //  If CLOCKWISE normally moves DOWN this makes it go UP.
 //  If CLOCKWISE normally moves UP this makes it go DOWN.
 //
-#define REVERSE_MENU_DIRECTION
+//#define REVERSE_MENU_DIRECTION
 
 //
 // This option reverses the encoder direction for Select Screen.
@@ -1884,14 +1908,14 @@
 //  If CLOCKWISE normally moves LEFT this makes it go RIGHT.
 //  If CLOCKWISE normally moves RIGHT this makes it go LEFT.
 //
-#define REVERSE_SELECT_DIRECTION
+//#define REVERSE_SELECT_DIRECTION
 
 //
 // Individual Axis Homing
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-#define INDIVIDUAL_AXIS_HOMING_MENU
+//#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER
@@ -1899,7 +1923,7 @@
 // If you have a speaker that can produce tones, enable it here.
 // By default Marlin assumes you have a buzzer with a fixed frequency.
 //
-#define SPEAKER
+//#define SPEAKER
 
 //
 // The duration and frequency for the UI feedback sound.
@@ -2072,7 +2096,7 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // ReprapWorld Graphical LCD
@@ -2395,6 +2419,10 @@
 //#define TFT_COLOR_UI
 //#define TFT_LVGL_UI
 
+#if ENABLED(TFT_LVGL_UI)
+  //#define MKS_WIFI_MODULE  // MKS WiFi module
+#endif
+
 /**
  * TFT Rotation. Set to one of the following values:
  *
@@ -2428,7 +2456,11 @@
   //#define TOUCH_CALIBRATION_Y -8981
   //#define TOUCH_OFFSET_X        -43
   //#define TOUCH_OFFSET_Y        257
-  //#define TOUCH_ORIENTATION   TOUCH_LANDSCAPE
+  //#define TOUCH_ORIENTATION TOUCH_LANDSCAPE
+
+  #if BOTH(TOUCH_SCREEN_CALIBRATION, EEPROM_SETTINGS)
+    #define TOUCH_CALIBRATION_AUTO_SAVE // Auto save successful calibration values to EEPROM
+  #endif
 
   #if ENABLED(TFT_COLOR_UI)
     //#define SINGLE_TOUCH_NAVIGATION
