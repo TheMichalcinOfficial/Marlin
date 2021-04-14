@@ -128,7 +128,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_RAMPS_S_12_EEFB
+  #define MOTHERBOARD BOARD_RAMPS_S_12_EFFB
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
@@ -1641,7 +1641,7 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), 0, 10 }
+  #define NOZZLE_PARK_POINT { 0, 0, 5 }
   //#define NOZZLE_PARK_X_ONLY          // X move only is required to park
   //#define NOZZLE_PARK_Y_ONLY          // Y move only is required to park
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
